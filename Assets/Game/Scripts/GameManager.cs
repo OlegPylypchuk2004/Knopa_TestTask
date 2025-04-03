@@ -6,11 +6,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _planetsCount;
 
     private PlanetarySystem _planetarySystem;
-    private PlanetaryFactory _factory;
+    private PlanetaryObjectFactory _planetaryObjectFactory;
+    private PlanetaryFactory _planetaryFactory;
 
     private void Start()
     {
-        _factory = new PlanetaryFactory(Resources.LoadAll<MassSpecificationData>("Data/MassSpecifications"));
+        _planetaryObjectFactory = new PlanetaryObjectFactory(Resources.LoadAll<MassSpecificationData>("Data/MassSpecifications"));
+        _planetaryFactory = new PlanetaryFactory(_planetaryObjectFactory);
 
         CreatePlanetarySystem();
     }
@@ -26,6 +28,6 @@ public class GameManager : MonoBehaviour
     private void CreatePlanetarySystem()
     {
         Transform parent = new GameObject("PlanetarySystem").transform;
-        _planetarySystem = _factory.Generate(_totalSystemMass, parent, _planetsCount);
+        _planetarySystem = _planetaryFactory.Generate(_totalSystemMass, parent, _planetsCount);
     }
 }
