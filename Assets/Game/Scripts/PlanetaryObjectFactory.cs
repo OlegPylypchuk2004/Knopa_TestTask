@@ -3,22 +3,27 @@ using UnityEngine;
 public class PlanetaryObjectFactory
 {
     private MassSpecificationData[] _massSpecificationDatas;
+    private PlanetaryObjectView _planetaryObjectViewPrefab;
 
-    public PlanetaryObjectFactory(MassSpecificationData[] massSpecificationDatas)
+    public PlanetaryObjectFactory()
     {
-        _massSpecificationDatas = massSpecificationDatas;
+        _massSpecificationDatas = Resources.LoadAll<MassSpecificationData>("Data/MassSpecifications");
+        _planetaryObjectViewPrefab = Resources.Load<PlanetaryObjectView>("Prefabs/PlanetaryObjectView");
     }
 
     public PlanetaryObject Create(float mass, Transform parent)
     {
-        GameObject planetGO = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        planetGO.transform.SetParent(parent);
-
         Vector3 orbitCenter = Vector3.zero;
         float orbitRadius = Random.Range(5f, 50f);
         float orbitSpeed = Random.Range(0.1f, 2f);
 
-        return new PlanetaryObject(mass, DetermineMassSpecificationData(mass), orbitCenter, orbitRadius, orbitSpeed, planetGO.transform);
+        PlanetaryObjectView planetaryObjectView = SpawnPlanetaryObjectView(parent);
+        PlanetaryObjectData planetaryObjectData = new PlanetaryObjectData(orbitCenter, orbitRadius, orbitSpeed, planetaryObjectView.transform);
+        PlanetaryObject planetaryObject = new PlanetaryObject(mass, DetermineMassSpecificationData(mass), planetaryObjectData);
+
+        planetaryObjectView.Initialize(planetaryObject);
+
+        return planetaryObject;
     }
 
     public MassSpecificationData DetermineMassSpecificationData(float mass)
@@ -32,5 +37,10 @@ public class PlanetaryObjectFactory
         }
 
         return null;
+    }
+
+    private PlanetaryObjectView SpawnPlanetaryObjectView(Transform parent)
+    {
+        return GameObject.Instantiate(_planetaryObjectViewPrefab, parent);
     }
 }

@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _planetaryObjectFactory = new PlanetaryObjectFactory(Resources.LoadAll<MassSpecificationData>("Data/MassSpecifications"));
+        _planetaryObjectFactory = new PlanetaryObjectFactory();
         _planetaryFactory = new PlanetaryFactory(_planetaryObjectFactory);
 
         CreatePlanetarySystem();
