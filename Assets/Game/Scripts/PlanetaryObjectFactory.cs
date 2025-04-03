@@ -11,14 +11,14 @@ public class PlanetaryObjectFactory
         _planetaryObjectViewPrefab = Resources.Load<PlanetaryObjectView>("Prefabs/PlanetaryObjectView");
     }
 
-    public PlanetaryObject Create(float mass, Transform parent)
+    public PlanetaryObject CreateObject(float mass, Transform parent)
     {
         Vector3 orbitCenter = Vector3.zero;
-        float orbitRadius = Random.Range(5f, 50f);
-        float orbitSpeed = Random.Range(0.1f, 2f);
+        float orbitSpeed = Random.Range(0.25f, 1f);
+        float orbitRadius = Mathf.Lerp(0.25f, 1f * 50f, orbitSpeed);
 
         PlanetaryObjectView planetaryObjectView = SpawnPlanetaryObjectView(parent);
-        PlanetaryObjectData planetaryObjectData = new PlanetaryObjectData(orbitCenter, orbitRadius, orbitSpeed, planetaryObjectView.transform);
+        PlanetaryObjectData planetaryObjectData = new PlanetaryObjectData(orbitCenter, orbitSpeed, orbitRadius, planetaryObjectView.transform);
         PlanetaryObject planetaryObject = new PlanetaryObject(mass, DetermineMassSpecificationData(mass), planetaryObjectData);
 
         planetaryObjectView.Initialize(planetaryObject);
@@ -26,7 +26,7 @@ public class PlanetaryObjectFactory
         return planetaryObject;
     }
 
-    public MassSpecificationData DetermineMassSpecificationData(float mass)
+    private MassSpecificationData DetermineMassSpecificationData(float mass)
     {
         for (int i = 0; i < _massSpecificationDatas.Length; i++)
         {

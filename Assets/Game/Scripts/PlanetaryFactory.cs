@@ -20,7 +20,7 @@ public class PlanetaryFactory
             float planetMass = Random.Range(remainingMass * 0.1f, remainingMass * 0.4f);
             remainingMass -= planetMass;
 
-            PlanetaryObject planetaryObject = _planetaryObjectFactory.Create(planetMass, parent);
+            PlanetaryObject planetaryObject = _planetaryObjectFactory.CreateObject(planetMass, parent);
             planetarySystem.AddPlanet(planetaryObject);
 
             if (remainingMass <= 0)
