@@ -1,25 +1,29 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 public class PlanetarySystem
 {
-    private List<PlanetaryObject> _planets = new List<PlanetaryObject>();
+    private List<PlanetaryObject> _planetaryObjects;
+
+    public PlanetarySystem()
+    {
+        _planetaryObjects = new List<PlanetaryObject>();
+    }
 
     public void AddPlanet(PlanetaryObject planet)
     {
-        _planets.Add(planet);
+        _planetaryObjects.Add(planet);
     }
 
     public IEnumerable<PlanetaryObject> GetPlanets()
     {
-        return _planets;
+        return _planetaryObjects;
     }
 
     public void UpdateSystem(float deltaTime)
     {
-        foreach (var planet in _planets)
+        foreach (PlanetaryObject planetaryObject in _planetaryObjects)
         {
-            planet.UpdatePosition(deltaTime);
+            planetaryObject.UpdatePosition(deltaTime);
         }
     }
 }

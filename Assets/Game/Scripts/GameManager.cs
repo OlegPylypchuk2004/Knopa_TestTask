@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -22,6 +23,20 @@ public class GameManager : MonoBehaviour
         if (_planetarySystem != null)
         {
             _planetarySystem.UpdateSystem(Time.deltaTime);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (_planetarySystem == null || _planetarySystem.GetPlanets().Count() <= 0)
+        {
+            return;
+        }
+
+        foreach (PlanetaryObject planetaryObject in _planetarySystem.GetPlanets())
+        {
+            Gizmos.color = planetaryObject.Data.MassSpecification.PlanetaryObjectColor;
+            Gizmos.DrawWireSphere(planetaryObject.Data.OrbitCenter, planetaryObject.Data.OrbitRadius);
         }
     }
 
