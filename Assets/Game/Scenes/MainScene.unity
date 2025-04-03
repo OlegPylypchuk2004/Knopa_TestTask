@@ -245,7 +245,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cff0ef20c24ba44787ec05273ede6ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalSystemMass: 10
+  _totalSystemMass: 10
+  _planetsCount: 5
 --- !u!4 &863841709
 Transform:
   m_ObjectHideFlags: 0

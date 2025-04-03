@@ -1,30 +1,33 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class PlanetaryFactory
 {
     private MassSpecificationData[] _massSpecificationDatas;
 
-    public PlanetaryFactory()
+    public PlanetaryFactory(MassSpecificationData[] massSpecificationDatas)
     {
-        _massSpecificationDatas = Resources.LoadAll<MassSpecificationData>("Data/MassSpecifications");
+        _massSpecificationDatas = massSpecificationDatas;
     }
 
-    public PlanetarySystem Generate(float totalMass, Transform parent)
+    public PlanetarySystem Generate(float totalMass, Transform parent, int planetsCount)
     {
-        PlanetarySystem system = new PlanetarySystem();
-        float remainingMass = totalMass;
-        int planetCount = Random.Range(3, 10);
+        PlanetarySystem planetarySystem = new PlanetarySystem();
 
-        for (int i = 0; i < planetCount; i++)
+        float remainingMass = totalMass;
+
+        for (int i = 0; i < planetsCount; i++)
         {
             float planetMass = Random.Range(remainingMass * 0.1f, remainingMass * 0.4f);
             remainingMass -= planetMass;
-            system.AddPlanet(CreatePlanetaryObject(planetMass, parent));
-            if (remainingMass <= 0) break;
+            planetarySystem.AddPlanet(CreatePlanetaryObject(planetMass, parent));
+
+            if (remainingMass <= 0)
+            {
+                break;
+            }
         }
 
-        return system;
+        return planetarySystem;
     }
 
     private PlanetaryObject CreatePlanetaryObject(float mass, Transform parent)
