@@ -15,7 +15,7 @@ public class PlanetaryObjectFactory
     {
         Vector3 orbitCenter = Vector3.zero;
         float orbitSpeed = Random.Range(0.25f, 1f);
-        float orbitRadius = Mathf.Lerp(0.25f, 1f * 50f, orbitSpeed);
+        float orbitRadius = Mathf.Lerp(0.25f, 1f * 25f, orbitSpeed);
 
         PlanetaryObjectView planetaryObjectView = SpawnPlanetaryObjectView(parent);
         PlanetaryObjectData planetaryObjectData = new PlanetaryObjectData(orbitCenter, orbitSpeed, orbitRadius, planetaryObjectView.transform);
