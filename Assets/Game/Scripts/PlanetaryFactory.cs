@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlanetaryFactory
@@ -14,19 +15,24 @@ public class PlanetaryFactory
         PlanetarySystem planetarySystem = new PlanetarySystem();
 
         float remainingMass = totalMass;
+        List<float> planetMasses = new List<float>();
+
+        float minMass = 0.001f;
+
+        for (int i = 0; i < planetsCount - 1; i++)
+        {
+            float maxMass = remainingMass - (planetsCount - i - 1) * minMass;
+            float planetMass = Random.Range(minMass, maxMass);
+            planetMasses.Add(planetMass);
+            remainingMass -= planetMass;
+        }
+
+        planetMasses.Add(remainingMass);
 
         for (int i = 0; i < planetsCount; i++)
         {
-            float planetMass = Random.Range(remainingMass * 0.1f, remainingMass * 0.4f);
-            remainingMass -= planetMass;
-
-            PlanetaryObject planetaryObject = _planetaryObjectFactory.CreateObject(planetMass, parent);
+            PlanetaryObject planetaryObject = _planetaryObjectFactory.CreateObject(planetMasses[i], parent);
             planetarySystem.AddPlanet(planetaryObject);
-
-            if (remainingMass <= 0)
-            {
-                break;
-            }
         }
 
         return planetarySystem;
