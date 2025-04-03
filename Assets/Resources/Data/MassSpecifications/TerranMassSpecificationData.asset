@@ -17,3 +17,4 @@ MonoBehaviour:
   <MaxMass>k__BackingField: 2
   <MinRadius>k__BackingField: 0.8
   <MaxRadius>k__BackingField: 1.9
+  <PlanetaryObjectColor>k__BackingField: {r: 0.06666667, g: 0.7294118, b: 0.13725491, a: 1}

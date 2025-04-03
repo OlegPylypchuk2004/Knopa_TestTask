@@ -8,6 +8,7 @@ public class MassSpecificationData : ScriptableObject
     [field: SerializeField] public float MaxMass { get; private set; }
     [field: SerializeField] public float MinRadius { get; private set; }
     [field: SerializeField] public float MaxRadius { get; private set; }
+    [field: SerializeField] public Color PlanetaryObjectColor { get; private set; }
 
     private void OnValidate()
     {
