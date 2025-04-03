@@ -2,25 +2,20 @@ using UnityEngine;
 
 public class PlanetaryObject
 {
-    public float Mass { get; private set; }
-    public MassSpecificationData MassSpecificationData { get; private set; }
-
-    private PlanetaryObjectData _data;
+    public PlanetaryObjectData Data { get; private set; }
 
     private float _orbitAngle;
 
-    public PlanetaryObject(float mass, MassSpecificationData massSpecificationData, PlanetaryObjectData planetaryObjectData)
+    public PlanetaryObject(PlanetaryObjectData planetaryObjectData)
     {
-        Mass = mass;
-        MassSpecificationData = massSpecificationData;
-        _data = planetaryObjectData;
+        Data = planetaryObjectData;
     }
 
     public void UpdatePosition(float deltaTime)
     {
-        _orbitAngle += _data.OrbitSpeed * deltaTime;
-        float x = _data.OrbitCenter.x + Mathf.Cos(_orbitAngle) * _data.OrbitRadius;
-        float z = _data.OrbitCenter.z + Mathf.Sin(_orbitAngle) * _data.OrbitRadius;
-        _data.ViewTransform.localPosition = new Vector3(x, 0, z);
+        _orbitAngle += Data.OrbitSpeed * deltaTime;
+        float x = Data.OrbitCenter.x + Mathf.Cos(_orbitAngle) * Data.OrbitRadius;
+        float z = Data.OrbitCenter.z + Mathf.Sin(_orbitAngle) * Data.OrbitRadius;
+        Data.ViewTransform.localPosition = new Vector3(x, 0, z);
     }
 }

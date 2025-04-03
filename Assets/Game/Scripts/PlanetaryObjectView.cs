@@ -10,7 +10,7 @@ public class PlanetaryObjectView : MonoBehaviour
     public void Initialize(PlanetaryObject planetaryObject)
     {
         _planetaryObject = planetaryObject;
-        transform.localScale = Vector3.one * Random.Range(_planetaryObject.MassSpecificationData.MinRadius, _planetaryObject.MassSpecificationData.MaxRadius) * _radiusCoef;
-        _meshRenderer.material.color = planetaryObject.MassSpecificationData.PlanetaryObjectColor;
+        transform.localScale = Vector3.one * Random.Range(_planetaryObject.Data.MassSpecification.MinRadius, _planetaryObject.Data.MassSpecification.MaxRadius) * _radiusCoef;
+        _meshRenderer.material.color = planetaryObject.Data.MassSpecification.PlanetaryObjectColor;
     }
 }
