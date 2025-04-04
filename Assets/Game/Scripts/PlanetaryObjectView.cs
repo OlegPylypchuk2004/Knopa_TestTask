@@ -12,6 +12,6 @@ public class PlanetaryObjectView : MonoBehaviour
         _planetaryObject = planetaryObject;
         transform.localScale = Vector3.one * _planetaryObject.Radius * _radiusCoef;
 
-        _meshRenderer.material.color = Color.white;
+        _meshRenderer.material.color = new Color(Random.value, Random.value, Random.value);
     }
 }
