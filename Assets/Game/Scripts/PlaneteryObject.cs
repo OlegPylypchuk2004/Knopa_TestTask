@@ -10,12 +10,10 @@ public class PlaneteryObject : IPlaneteryObject
 
     public MassClass MassClassEnum { get; private set; }
     public double Mass { get; private set; }
-    public float Radius { get; private set; }
 
     public PlaneteryObject(double mass, Transform transform)
     {
         Mass = mass;
-        Radius = CalculateRadius(mass);
         MassClassEnum = DetermineMassClass(mass);
         _orbitCenter = Vector3.zero;
         _orbitSpeed = Random.Range(0.25f, 1f);
@@ -41,21 +39,5 @@ public class PlaneteryObject : IPlaneteryObject
         if (mass < 50f) return MassClass.Neptunian;
 
         return MassClass.Jovian;
-    }
-
-    private float CalculateRadius(double mass)
-    {
-        switch (DetermineMassClass(mass))
-        {
-            case MassClass.Asteroidan: return Random.Range(0f, 0.03f);
-            case MassClass.Mercurian: return Random.Range(0.03f, 0.7f);
-            case MassClass.Subterran: return Random.Range(0.5f, 1.2f);
-            case MassClass.Terran: return Random.Range(0.8f, 1.9f);
-            case MassClass.Superterran: return Random.Range(1.3f, 3.3f);
-            case MassClass.Neptunian: return Random.Range(2.1f, 5.7f);
-            case MassClass.Jovian: return Random.Range(3.5f, 27f);
-
-            default: return 1f;
-        }
     }
 }
