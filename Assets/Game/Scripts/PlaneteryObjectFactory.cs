@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 
 public class PlaneteryObjectFactory
 {
     private PlaneteryObjectView _planeteryObjectViewPrefab;
+
+    public event Action<IPlaneteryObject, PlaneteryObjectView> ObjectCreated;
 
     public PlaneteryObjectFactory()
     {
@@ -14,6 +17,8 @@ public class PlaneteryObjectFactory
         PlaneteryObjectView planeteryObjectView = SpawnPlaneteryObjectView();
         IPlaneteryObject planeteryObject = new PlaneteryObject(mass, planeteryObjectView.transform);
         planeteryObjectView.Initialize(planeteryObject);
+
+        ObjectCreated?.Invoke(planeteryObject, planeteryObjectView);
 
         return planeteryObject;
     }

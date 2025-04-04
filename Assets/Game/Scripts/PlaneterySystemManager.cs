@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -7,9 +8,14 @@ public class PlaneterySystemManager : MonoBehaviour
     private PlaneteryObjectFactory _planeteryObjectFactory;
     private IPlaneterySystemFactory _planeteryFactory;
 
+    private List<PlaneteryObjectView> _planeteryObjectViews;
+
     private void Start()
     {
         _planeteryObjectFactory = new PlaneteryObjectFactory();
+        _planeteryObjectViews = new List<PlaneteryObjectView>();
+        _planeteryObjectFactory.ObjectCreated += OnPlaneteryObjectCreated;
+
         _planeteryFactory = new PlaneterySystemFactory(_planeteryObjectFactory);
 
         GeneratePlaneterySystem();
@@ -21,6 +27,11 @@ public class PlaneterySystemManager : MonoBehaviour
         {
             _planeterySystem.Update(Time.deltaTime);
         }
+    }
+
+    private void OnDestroy()
+    {
+        _planeteryObjectFactory.ObjectCreated -= OnPlaneteryObjectCreated;
     }
 
     private void OnDrawGizmos()
@@ -38,15 +49,22 @@ public class PlaneterySystemManager : MonoBehaviour
 
     public void GeneratePlaneterySystem()
     {
-        if (_planeterySystem != null)
+        if (_planeteryObjectViews != null && _planeteryObjectViews.Count > 0)
         {
-            foreach (Transform childTransform in transform)
+            foreach (PlaneteryObjectView planeteryObjectView in _planeteryObjectViews)
             {
-                Destroy(childTransform.gameObject);
+                Destroy(planeteryObjectView.gameObject);
             }
+
+            _planeteryObjectViews.Clear();
         }
 
         float totalSystemMass = Random.Range(5f, 15f);
         _planeterySystem = _planeteryFactory.Create(totalSystemMass);
+    }
+
+    private void OnPlaneteryObjectCreated(IPlaneteryObject planeteryObject, PlaneteryObjectView planeteryObjectView)
+    {
+        _planeteryObjectViews.Add(planeteryObjectView);
     }
 }
