@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private PlanetarySystemManager _gameManager;
+    [SerializeField] private PlaneterySystemManager _gameManager;
     [SerializeField] private Button _generateButton;
 
     private void OnEnable()
@@ -18,6 +18,6 @@ public class UIManager : MonoBehaviour
 
     private void OnGenerateButtonClicked()
     {
-        _gameManager.GeneratePlanetarySystem();
+        _gameManager.GeneratePlaneterySystem();
     }
 }
