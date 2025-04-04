@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 
-public class PlanetarySystem : IPlaneterySystem
+public class PlaneterySystem : IPlaneterySystem
 {
     private List<IPlaneteryObject> _planetaryObjects;
 
-    public PlanetarySystem()
+    public PlaneterySystem()
     {
         _planetaryObjects = new List<IPlaneteryObject>();
     }

@@ -12,7 +12,7 @@ public class PlanetarySystemFactory : IPlanetarySystemFactory
 
     public IPlaneterySystem Create(double totalMass)
     {
-        IPlaneterySystem planetarySystem = new PlanetarySystem();
+        IPlaneterySystem planetarySystem = new PlaneterySystem();
 
         int planetsCount = Random.Range(5, 15);
         double remainingMass = totalMass;
@@ -23,9 +23,7 @@ public class PlanetarySystemFactory : IPlanetarySystemFactory
         for (int i = 0; i < planetsCount - 1; i++)
         {
             double maxMass = remainingMass - (planetsCount - i - 1) * minMass;
-
-            System.Random random = new System.Random();
-            double planetMass = minMass + (maxMass - minMass) * random.NextDouble();
+            double planetMass = minMass + (maxMass - minMass) * new System.Random().NextDouble();
 
             planetMasses.Add(planetMass);
             remainingMass -= planetMass;
