@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class PlaneterySystemManager : MonoBehaviour
 {
-    [SerializeField] private float _totalSystemMass;
-    [SerializeField] private int _planetsCount;
-
     private IPlaneterySystem _planeterySystem;
     private PlaneteryObjectFactory _planeteryObjectFactory;
     private IPlaneterySystemFactory _planeteryFactory;
@@ -50,6 +47,7 @@ public class PlaneterySystemManager : MonoBehaviour
             }
         }
 
-        _planeterySystem = _planeteryFactory.Create(_totalSystemMass);
+        float totalSystemMass = Random.Range(5f, 15f);
+        _planeterySystem = _planeteryFactory.Create(totalSystemMass);
     }
 }
