@@ -16,16 +16,11 @@ public class GameManager : MonoBehaviour
         _planetaryObjectFactory = new PlanetaryObjectFactory();
         _planetaryFactory = new PlanetaryFactory(_planetaryObjectFactory);
 
-        CreatePlanetarySystem();
+        GeneratePlanetarySystem();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            CreatePlanetarySystem();
-        }
-
         if (_planetarySystem != null)
         {
             _planetarySystem.UpdateSystem(Time.deltaTime);
@@ -46,7 +41,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void CreatePlanetarySystem()
+    public void GeneratePlanetarySystem()
     {
         if (_systemView != null)
         {
