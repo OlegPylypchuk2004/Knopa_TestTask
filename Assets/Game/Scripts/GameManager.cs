@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private PlanetarySystem _planetarySystem;
     private PlanetaryObjectFactory _planetaryObjectFactory;
     private PlanetaryFactory _planetaryFactory;
+    private GameObject _systemView;
 
     private void Start()
     {
@@ -20,6 +21,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            CreatePlanetarySystem();
+        }
+
         if (_planetarySystem != null)
         {
             _planetarySystem.UpdateSystem(Time.deltaTime);
@@ -42,7 +48,12 @@ public class GameManager : MonoBehaviour
 
     private void CreatePlanetarySystem()
     {
-        Transform parent = new GameObject("PlanetarySystem").transform;
-        _planetarySystem = _planetaryFactory.Generate(_totalSystemMass, parent, _planetsCount);
+        if (_systemView != null)
+        {
+            Destroy(_systemView.gameObject);
+        }
+
+        _systemView = new GameObject("PlanetarySystem");
+        _planetarySystem = _planetaryFactory.Generate(_totalSystemMass, _systemView.transform, _planetsCount);
     }
 }
