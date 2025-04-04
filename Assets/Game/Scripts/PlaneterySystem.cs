@@ -13,9 +13,9 @@ public class PlaneterySystem : IPlaneterySystem
 
     public void Update(float deltaTime)
     {
-        foreach (PlanetaryObject planetaryObject in _planeteryObjects)
+        foreach (PlaneteryObject planeteryObject in _planeteryObjects)
         {
-            planetaryObject.UpdatePosition(deltaTime);
+            planeteryObject.UpdatePosition(deltaTime);
         }
     }
 }

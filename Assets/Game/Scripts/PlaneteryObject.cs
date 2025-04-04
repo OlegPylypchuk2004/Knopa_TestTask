@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlanetaryObject : IPlaneteryObject
+public class PlaneteryObject : IPlaneteryObject
 {
     private float _orbitAngle;
     private Vector3 _orbitCenter;
@@ -12,7 +12,7 @@ public class PlanetaryObject : IPlaneteryObject
     public double Mass { get; private set; }
     public float Radius { get; private set; }
 
-    public PlanetaryObject(double mass, Transform transform)
+    public PlaneteryObject(double mass, Transform transform)
     {
         Mass = mass;
         Radius = CalculateRadius(mass);

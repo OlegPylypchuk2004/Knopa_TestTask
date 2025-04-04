@@ -1,4 +1,4 @@
-public interface IPlanetarySystemFactory
+public interface IPlaneterySystemFactory
 {
     public IPlaneterySystem Create(double mass);
 }

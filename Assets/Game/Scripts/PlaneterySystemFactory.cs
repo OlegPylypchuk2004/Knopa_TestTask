@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlanetarySystemFactory : IPlanetarySystemFactory
+public class PlaneterySystemFactory : IPlaneterySystemFactory
 {
-    private PlanetaryObjectFactory _planetaryObjectFactory;
+    private PlaneteryObjectFactory _planeteryObjectFactory;
 
-    public PlanetarySystemFactory(PlanetaryObjectFactory planetaryObjectFactory)
+    public PlaneterySystemFactory(PlaneteryObjectFactory planeteryObjectFactory)
     {
-        _planetaryObjectFactory = planetaryObjectFactory;
+        _planeteryObjectFactory = planeteryObjectFactory;
     }
 
     public IPlaneterySystem Create(double totalMass)
@@ -33,12 +33,12 @@ public class PlanetarySystemFactory : IPlanetarySystemFactory
 
         for (int i = 0; i < planetsCount; i++)
         {
-            IPlaneteryObject planetaryObject = _planetaryObjectFactory.CreateObject(planetMasses[i]);
-            planeteryObjects.Add(planetaryObject);
+            IPlaneteryObject planeteryObject = _planeteryObjectFactory.CreateObject(planetMasses[i]);
+            planeteryObjects.Add(planeteryObject);
         }
 
-        IPlaneterySystem planetarySystem = new PlaneterySystem(planeteryObjects);
+        IPlaneterySystem planeterySystem = new PlaneterySystem(planeteryObjects);
 
-        return planetarySystem;
+        return planeterySystem;
     }
 }

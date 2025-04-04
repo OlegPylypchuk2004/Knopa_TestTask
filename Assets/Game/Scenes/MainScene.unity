@@ -463,7 +463,7 @@ GameObject:
   - component: {fileID: 863841709}
   - component: {fileID: 863841708}
   m_Layer: 0
-  m_Name: PlanetarySystemManager
+  m_Name: PlaneterySystemManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -478,11 +478,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 863841707}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cff0ef20c24ba44787ec05273ede6ce, type: 3}
+  m_Script: {fileID: 11500000, guid: dfcc7eaf2b4aa7744b98546f0fa19d3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _totalSystemMass: 10
-  _planetsCount: 10
+  _totalSystemMass: 0
+  _planetsCount: 0
 --- !u!4 &863841709
 Transform:
   m_ObjectHideFlags: 0
