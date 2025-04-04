@@ -1,25 +1,22 @@
 using System.Collections.Generic;
 
-public class PlanetarySystem
+public class PlanetarySystem : IPlaneterySystem
 {
-    private List<PlanetaryObject> _planetaryObjects;
+    private List<IPlaneteryObject> _planetaryObjects;
 
     public PlanetarySystem()
     {
-        _planetaryObjects = new List<PlanetaryObject>();
+        _planetaryObjects = new List<IPlaneteryObject>();
     }
 
-    public void AddPlanet(PlanetaryObject planet)
+    public IEnumerable<IPlaneteryObject> PlaneteryObjects => _planetaryObjects;
+
+    public void AddPlaneteryObject(IPlaneteryObject planet)
     {
         _planetaryObjects.Add(planet);
     }
 
-    public IEnumerable<PlanetaryObject> GetPlanets()
-    {
-        return _planetaryObjects;
-    }
-
-    public void UpdateSystem(float deltaTime)
+    public void Update(float deltaTime)
     {
         foreach (PlanetaryObject planetaryObject in _planetaryObjects)
         {

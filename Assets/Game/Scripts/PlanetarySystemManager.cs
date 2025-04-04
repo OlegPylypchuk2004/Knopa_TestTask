@@ -6,14 +6,14 @@ public class PlanetarySystemManager : MonoBehaviour
     [SerializeField] private float _totalSystemMass;
     [SerializeField] private int _planetsCount;
 
-    private PlanetarySystem _planetarySystem;
+    private IPlaneterySystem _planetarySystem;
     private PlanetaryObjectFactory _planetaryObjectFactory;
-    private PlanetaryFactory _planetaryFactory;
+    private IPlanetarySystemFactory _planetaryFactory;
 
     private void Start()
     {
         _planetaryObjectFactory = new PlanetaryObjectFactory();
-        _planetaryFactory = new PlanetaryFactory(_planetaryObjectFactory);
+        _planetaryFactory = new PlanetarySystemFactory(_planetaryObjectFactory);
 
         GeneratePlanetarySystem();
     }
@@ -22,21 +22,21 @@ public class PlanetarySystemManager : MonoBehaviour
     {
         if (_planetarySystem != null)
         {
-            _planetarySystem.UpdateSystem(Time.deltaTime);
+            _planetarySystem.Update(Time.deltaTime);
         }
     }
 
     private void OnDrawGizmos()
     {
-        if (_planetarySystem == null || _planetarySystem.GetPlanets().Count() <= 0)
+        if (_planetarySystem == null || _planetarySystem.PlaneteryObjects.Count() <= 0)
         {
             return;
         }
 
-        foreach (PlanetaryObject planetaryObject in _planetarySystem.GetPlanets())
+        foreach (PlanetaryObject planetaryObject in _planetarySystem.PlaneteryObjects)
         {
-            Gizmos.color = planetaryObject.Data.MassSpecification.PlanetaryObjectColor;
-            Gizmos.DrawWireSphere(planetaryObject.Data.OrbitCenter, planetaryObject.Data.OrbitRadius);
+            //Gizmos.color = planetaryObject.MassSpecificationData.PlanetaryObjectColor;
+            //Gizmos.DrawWireSphere(planetaryObject.Data.OrbitCenter, planetaryObject.Data.OrbitRadius);
         }
     }
 
@@ -50,6 +50,6 @@ public class PlanetarySystemManager : MonoBehaviour
             }
         }
 
-        _planetarySystem = _planetaryFactory.Generate(_totalSystemMass, transform, _planetsCount);
+        _planetarySystem = _planetaryFactory.Create(_totalSystemMass);
     }
 }

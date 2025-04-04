@@ -2,45 +2,30 @@ using UnityEngine;
 
 public class PlanetaryObjectFactory
 {
-    private MassSpecificationData[] _massSpecificationDatas;
     private PlanetaryObjectView _planetaryObjectViewPrefab;
 
     public PlanetaryObjectFactory()
     {
-        _massSpecificationDatas = Resources.LoadAll<MassSpecificationData>("Data/MassSpecifications");
         _planetaryObjectViewPrefab = Resources.Load<PlanetaryObjectView>("Prefabs/PlanetaryObjectView");
     }
 
-    public PlanetaryObject CreateObject(float mass, Transform parent)
+    public IPlaneteryObject CreateObject(double mass)
     {
         Vector3 orbitCenter = Vector3.zero;
         float orbitSpeed = Random.Range(0.25f, 1f);
         float orbitRadius = Mathf.Lerp(0.25f, 1f * 25f, orbitSpeed);
 
-        PlanetaryObjectView planetaryObjectView = SpawnPlanetaryObjectView(parent);
-        PlanetaryObjectData planetaryObjectData = new PlanetaryObjectData(DetermineMassSpecificationData(mass), orbitCenter, orbitSpeed, orbitRadius, planetaryObjectView.transform);
-        PlanetaryObject planetaryObject = new PlanetaryObject(planetaryObjectData);
+        PlanetaryObjectView planetaryObjectView = SpawnPlanetaryObjectView();
+        //PlanetaryObjectData planetaryObjectData = new PlanetaryObjectData(orbitCenter, orbitSpeed, orbitRadius, planetaryObjectView.transform);
+        IPlaneteryObject planetaryObject = new PlanetaryObject(mass);
 
         planetaryObjectView.Initialize(planetaryObject);
 
         return planetaryObject;
     }
 
-    private MassSpecificationData DetermineMassSpecificationData(float mass)
+    private PlanetaryObjectView SpawnPlanetaryObjectView()
     {
-        for (int i = 0; i < _massSpecificationDatas.Length; i++)
-        {
-            if (_massSpecificationDatas[i].MinMass <= mass && _massSpecificationDatas[i].MaxMass >= mass)
-            {
-                return _massSpecificationDatas[i];
-            }
-        }
-
-        return null;
-    }
-
-    private PlanetaryObjectView SpawnPlanetaryObjectView(Transform parent)
-    {
-        return GameObject.Instantiate(_planetaryObjectViewPrefab, parent);
+        return GameObject.Instantiate(_planetaryObjectViewPrefab);
     }
 }
