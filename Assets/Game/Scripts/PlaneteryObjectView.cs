@@ -6,11 +6,16 @@ public class PlaneteryObjectView : MonoBehaviour
     [SerializeField] private MeshRenderer _meshRenderer;
 
     private IPlaneteryObject _planeteryObject;
+    private float _radius;
+
+    public IPlaneteryObject PlaneteryObject => _planeteryObject;
+    public float Radius => _radius;
 
     public void Initialize(IPlaneteryObject planeteryObject)
     {
         _planeteryObject = planeteryObject;
-        transform.localScale = Vector3.one * CalculateRadius() * _radiusCoef;
+        _radius = CalculateRadius();
+        transform.localScale = Vector3.one * _radius * _radiusCoef;
 
         _meshRenderer.material.color = new Color(Random.value, Random.value, Random.value);
     }

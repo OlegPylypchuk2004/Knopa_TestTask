@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private PlaneterySystemManager _gameManager;
     [SerializeField] private Button _generateButton;
     [SerializeField] private Button _pauseButton;
+    [SerializeField] private TextMeshProUGUI _pauseButtonTextMesh;
 
     private void OnEnable()
     {
@@ -27,5 +29,14 @@ public class UIManager : MonoBehaviour
     private void OnPauseButtonClicked()
     {
         Time.timeScale = Mathf.Abs(Time.timeScale - 1f);
+
+        if (Time.timeScale == 0f)
+        {
+            _pauseButtonTextMesh.text = "Play";
+        }
+        else
+        {
+            _pauseButtonTextMesh.text = "Pause";
+        }
     }
 }
