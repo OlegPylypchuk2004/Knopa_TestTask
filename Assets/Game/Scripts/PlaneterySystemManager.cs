@@ -32,8 +32,7 @@ public class PlaneterySystemManager : MonoBehaviour
 
         foreach (PlaneteryObject planeteryObject in _planeterySystem.PlaneteryObjects)
         {
-            //Gizmos.color = planetaryObject.MassSpecificationData.PlanetaryObjectColor;
-            //Gizmos.DrawWireSphere(planetaryObject.Data.OrbitCenter, planetaryObject.Data.OrbitRadius);
+            Gizmos.DrawWireSphere(planeteryObject.OrbitCenter, planeteryObject.OrbitRadius);
         }
     }
 

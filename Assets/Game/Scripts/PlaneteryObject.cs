@@ -10,6 +10,8 @@ public class PlaneteryObject : IPlaneteryObject
 
     public MassClass MassClassEnum { get; private set; }
     public double Mass { get; private set; }
+    public Vector3 OrbitCenter => _orbitCenter;
+    public float OrbitRadius => _orbitRadius;
 
     public PlaneteryObject(double mass, Transform transform)
     {
