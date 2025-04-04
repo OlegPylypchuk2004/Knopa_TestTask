@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlaneterySystemManager : MonoBehaviour
 {
     private IPlaneterySystem _planeterySystem;
-    private PlaneteryObjectFactory _planeteryObjectFactory;
+    private IPlaneteryObjectFactory _planeteryObjectFactory;
     private IPlaneterySystemFactory _planeteryFactory;
 
     private List<PlaneteryObjectView> _planeteryObjectViews;

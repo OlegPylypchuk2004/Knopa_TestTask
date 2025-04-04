@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class PlaneterySystemFactory : IPlaneterySystemFactory
 {
-    private PlaneteryObjectFactory _planeteryObjectFactory;
+    private IPlaneteryObjectFactory _planeteryObjectFactory;
 
-    public PlaneterySystemFactory(PlaneteryObjectFactory planeteryObjectFactory)
+    public PlaneterySystemFactory(IPlaneteryObjectFactory planeteryObjectFactory)
     {
         _planeteryObjectFactory = planeteryObjectFactory;
     }

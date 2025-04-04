@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlaneteryObjectFactory
+public class PlaneteryObjectFactory : IPlaneteryObjectFactory
 {
     private PlaneteryObjectView _planeteryObjectViewPrefab;
 
