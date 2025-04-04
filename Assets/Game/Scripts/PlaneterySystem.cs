@@ -2,23 +2,18 @@ using System.Collections.Generic;
 
 public class PlaneterySystem : IPlaneterySystem
 {
-    private List<IPlaneteryObject> _planetaryObjects;
+    private List<IPlaneteryObject> _planeteryObjects;
 
-    public PlaneterySystem()
+    public PlaneterySystem(List<IPlaneteryObject> planeteryObjects)
     {
-        _planetaryObjects = new List<IPlaneteryObject>();
+        _planeteryObjects = planeteryObjects;
     }
 
-    public IEnumerable<IPlaneteryObject> PlaneteryObjects => _planetaryObjects;
-
-    public void AddPlaneteryObject(IPlaneteryObject planet)
-    {
-        _planetaryObjects.Add(planet);
-    }
+    public IEnumerable<IPlaneteryObject> PlaneteryObjects => _planeteryObjects;
 
     public void Update(float deltaTime)
     {
-        foreach (PlanetaryObject planetaryObject in _planetaryObjects)
+        foreach (PlanetaryObject planetaryObject in _planeteryObjects)
         {
             planetaryObject.UpdatePosition(deltaTime);
         }

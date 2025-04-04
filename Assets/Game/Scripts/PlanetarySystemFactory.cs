@@ -12,8 +12,6 @@ public class PlanetarySystemFactory : IPlanetarySystemFactory
 
     public IPlaneterySystem Create(double totalMass)
     {
-        IPlaneterySystem planetarySystem = new PlaneterySystem();
-
         int planetsCount = Random.Range(5, 15);
         double remainingMass = totalMass;
         List<double> planetMasses = new List<double>();
@@ -31,11 +29,15 @@ public class PlanetarySystemFactory : IPlanetarySystemFactory
 
         planetMasses.Add(remainingMass);
 
+        List<IPlaneteryObject> planeteryObjects = new List<IPlaneteryObject>();
+
         for (int i = 0; i < planetsCount; i++)
         {
             IPlaneteryObject planetaryObject = _planetaryObjectFactory.CreateObject(planetMasses[i]);
-            planetarySystem.AddPlaneteryObject(planetaryObject);
+            planeteryObjects.Add(planetaryObject);
         }
+
+        IPlaneterySystem planetarySystem = new PlaneterySystem(planeteryObjects);
 
         return planetarySystem;
     }
