@@ -3,21 +3,29 @@ using UnityEngine;
 public class PlanetaryObject : IPlaneteryObject
 {
     private float _orbitAngle;
+    private Vector3 _orbitCenter;
+    private float _orbitSpeed;
+    private float _orbitRadius;
+    private Transform _transform;
 
     public MassClass MassClassEnum { get; private set; }
     public double Mass { get; private set; }
 
-    public PlanetaryObject(double mass)
+    public PlanetaryObject(double mass, Transform transform)
     {
         MassClassEnum = DetermineMassClass(mass);
+        _orbitCenter = Vector3.zero;
+        _orbitSpeed = Random.Range(0.25f, 1f);
+        _orbitRadius = Mathf.Lerp(0.25f, 1f * 25f, _orbitSpeed);
+        _transform = transform;
     }
 
     public void UpdatePosition(float deltaTime)
     {
-        //_orbitAngle += Data.OrbitSpeed * deltaTime;
-        //float x = Data.OrbitCenter.x + Mathf.Cos(_orbitAngle) * Data.OrbitRadius;
-        //float z = Data.OrbitCenter.z + Mathf.Sin(_orbitAngle) * Data.OrbitRadius;
-        //Data.ViewTransform.localPosition = new Vector3(x, 0, z);
+        _orbitAngle += _orbitSpeed * deltaTime;
+        float x = _orbitCenter.x + Mathf.Cos(_orbitAngle) * _orbitRadius;
+        float z = _orbitCenter.z + Mathf.Sin(_orbitAngle) * _orbitRadius;
+        _transform.localPosition = new Vector3(x, 0, z);
     }
 
     private MassClass DetermineMassClass(double mass)
