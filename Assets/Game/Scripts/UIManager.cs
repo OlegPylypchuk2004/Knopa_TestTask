@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private GameManager _gameManager;
+    [SerializeField] private PlanetarySystemManager _gameManager;
     [SerializeField] private Button _generateButton;
 
     private void OnEnable()

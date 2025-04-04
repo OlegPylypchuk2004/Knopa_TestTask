@@ -1,7 +1,7 @@
 using System.Linq;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class PlanetarySystemManager : MonoBehaviour
 {
     [SerializeField] private float _totalSystemMass;
     [SerializeField] private int _planetsCount;
@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     private PlanetarySystem _planetarySystem;
     private PlanetaryObjectFactory _planetaryObjectFactory;
     private PlanetaryFactory _planetaryFactory;
-    private GameObject _systemView;
 
     private void Start()
     {
@@ -43,12 +42,14 @@ public class GameManager : MonoBehaviour
 
     public void GeneratePlanetarySystem()
     {
-        if (_systemView != null)
+        if (_planetarySystem != null)
         {
-            Destroy(_systemView.gameObject);
+            foreach (Transform childTransform in transform)
+            {
+                Destroy(childTransform.gameObject);
+            }
         }
 
-        _systemView = new GameObject("PlanetarySystem");
-        _planetarySystem = _planetaryFactory.Generate(_totalSystemMass, _systemView.transform, _planetsCount);
+        _planetarySystem = _planetaryFactory.Generate(_totalSystemMass, transform, _planetsCount);
     }
 }

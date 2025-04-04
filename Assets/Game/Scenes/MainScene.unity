@@ -463,7 +463,7 @@ GameObject:
   - component: {fileID: 863841709}
   - component: {fileID: 863841708}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: PlanetarySystemManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1070,5 +1070,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 1057449971}
   - {fileID: 528264285}
-  - {fileID: 863841709}
   - {fileID: 2081888055}
+  - {fileID: 863841709}
